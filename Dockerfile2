@@ -1,0 +1,14 @@
+# 使用官方的 Python 映像檔
+FROM python:3.9-slim
+
+# 設置工作目錄
+WORKDIR /app
+
+# 複製當前目錄下的所有檔案到容器中的 /app
+COPY . /app
+
+# 安裝所需的 Python 套件
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 啟動應用程式
+CMD ["python", "app.py"]
