@@ -3,6 +3,13 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends --no-install-suggests \
        file \
        bzip2 \
+       lsof \ 
+       vim \
+       net-tools\
+       mtr \
+       telnet \
+       libncursesw6 \
+       libncurses6 \
        libncursesw5 \
        binutils \
        sqlite3 \
