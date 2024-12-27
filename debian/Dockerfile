@@ -14,6 +14,7 @@ RUN apt-get update \
        binutils \
        sqlite3 \
        sudo \
+       tar \ 
        libncurses5 \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*

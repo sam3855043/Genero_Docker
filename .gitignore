@@ -1,2 +1,4 @@
 *.run
 fglgws-base/*.run
+etc
+fglgws-base/*.tar.gz
