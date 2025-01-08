@@ -1,5 +1,5 @@
-docker pull debian:latest
-docker build --force-rm -t fglgws-os .
+ - docker pull debian:latest
+ - docker build --force-rm -t fglgws-os .
 
 
 e84d1e2ec659

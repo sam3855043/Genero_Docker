@@ -22,5 +22,6 @@ ENV FGLDIR /opt/fourjs/fglgws
 ENV PATH ${FGLDIR}/bin:${PATH}
 RUN /tmp/fglgws-install.run --accept --install --quiet --target ${FGLDIR} 
 RUN fglrun -V
+RUN ls -la /
 #RUN tar zxvf /utl.tar.gz
 
