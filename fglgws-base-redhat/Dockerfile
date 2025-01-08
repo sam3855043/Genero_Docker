@@ -16,7 +16,9 @@ RUN yum -y update && \
 ARG user=genero
 ARG group=fourjs
 ARG FGLGWS_PACKAGE
-
+ARG FGLDIRETC
+ARG UTL_TAR
+ARG BASH_PROFILE
 
 # 建立使用者和群組
 RUN groupadd -r ${group} || true && \
@@ -49,14 +51,25 @@ RUN fglrun -V
 
 # utl 上包
 WORKDIR /
-COPY ${UTL} /
+#COPY ${UTL} /
 USER root
-RUN ls -la /
-RUN tar zxvf /utl.tar.gz
+#RUN ls -la /
+#RUN tar zxvf /utl.tar.gz
 
 #fgllicense 設定
-WORKDIR ${FGLDIR}
-COPY fgletc.tar.gz /
+
+#COPY ${FGLDIRETC} /opt/fourjs/fglgws/fgletc.tar.gz
+WORKDIR /opt/fourjs/fglgws
+COPY ${FGLDIRETC} /opt/fourjs/fglgws
+RUN ls /opt/fourjs/fglgws
+#COPY ${FGLDIRETC} /tmp/fgletc.tar.gz 
 RUN tar zxvf fgletc.tar.gz
+RUN ls /opt/fourjs/fglgws/etc
+WORKDIR /opt/fourjs
+RUN git clone https://github.com/sam3855043/MogDB_oci_testing.git
+RUN ls /opt/fourjs
+
+COPY ${BASH_PROFILE} /opt/fourjs
+RUN ls -la /opt/fourjs
 CMD ["/bin/bash"]
 
