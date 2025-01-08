@@ -8,7 +8,6 @@ ENV LD_LIBRARY_PATH=$ORACLE_HOME
 ENV PATH=$PATH:$ORACLE_HOME
 
 # Install necessary packages
-# Install necessary packages
 RUN yum -y update && \
     yum -y install \
     vi \
@@ -17,6 +16,7 @@ RUN yum -y update && \
     ncurses-compat-libs \
     libaio \
     bzip2 \
+    file \
     binutils \
     sqlite \
     sudo \
@@ -52,14 +52,15 @@ RUN echo "$ORACLE_HOME" >> /etc/ld.so.conf.d/oracle-instantclient.conf && \
 # Configure Listener with specific IP
 # 設定 tnsnames.ora
 RUN mkdir -p $ORACLE_HOME/network/admin && \
-    echo "ORCLCDB = \
+    echo "TOPPRD = \
     (DESCRIPTION = \
         (ADDRESS = (PROTOCOL = TCP)(HOST = 10.40.40.207)(PORT = 1521)) \
         (CONNECT_DATA = \
             (SERVER = DEDICATED) \
-            (SERVICE_NAME = ORCLCDB) \
+            (SERVICE_NAME = TOPPRD) \
         ) \
     )" > $ORACLE_HOME/network/admin/tnsnames.ora
 # 驗證 SQL*Plus
 #CMD ["sqlplus", "-v"]
+
 CMD ["/bin/bash"]
