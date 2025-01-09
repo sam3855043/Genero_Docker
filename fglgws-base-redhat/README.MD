@@ -11,6 +11,7 @@ podman  build --force-rm \
      --build-arg UTL_TAR=utl.tar.gz \
      --build-arg FGLDIRETC=fgletc.tar.gz \
      --build-arg BASH_PROFILE=.bash_profile \
+     --build-arg U1ETC=u1etc.tar.gz \
      -t redhat-fglgws-base .
  - clear resource
  - podman system prune

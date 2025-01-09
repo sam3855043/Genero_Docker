@@ -18,6 +18,7 @@ ARG group=fourjs
 ARG FGLGWS_PACKAGE
 ARG FGLDIRETC
 ARG UTL_TAR
+ARG U1ETC
 ARG BASH_PROFILE
 
 # 建立使用者和群組
@@ -47,7 +48,7 @@ RUN ls -l /tmp/fglgws-install.run
 RUN chmod +x /tmp/fglgws-install.run
 RUN sh /tmp/fglgws-install.run --accept --install --quiet --target ${FGLDIR} 
 RUN fglrun -V
-# 複製檔案
+
 
 # utl 上包
 WORKDIR /
@@ -62,14 +63,21 @@ USER root
 WORKDIR /opt/fourjs/fglgws
 COPY ${FGLDIRETC} /opt/fourjs/fglgws
 RUN ls /opt/fourjs/fglgws
-#COPY ${FGLDIRETC} /tmp/fgletc.tar.gz 
 RUN tar zxvf fgletc.tar.gz
 RUN ls /opt/fourjs/fglgws/etc
+
+#T100 profile enviorment
+WORKDIR /
+COPY ${U1ETC} /
+RUN tar zxvf u1etc.tar.gz
+RUN ls /u1/etc
+
 WORKDIR /opt/fourjs
 RUN git clone https://github.com/sam3855043/MogDB_oci_testing.git
 RUN ls /opt/fourjs
 
 COPY ${BASH_PROFILE} /opt/fourjs
+RUN . /opt/fourjs/.bash_profile
 RUN ls -la /opt/fourjs
 CMD ["/bin/bash"]
 
